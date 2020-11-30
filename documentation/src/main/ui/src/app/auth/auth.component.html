@@ -1,0 +1,65 @@
+
+<section id="auth">
+
+   <p>auth works!</p>
+   <button *ngIf="!authStatut" (click)="onSignIn()">Sign In</button>
+   {{authStatut}}
+   <button  *ngIf="authStatut" (click)="onSignOff()">Sign Out</button>
+   
+
+
+
+    <div class="logo">
+      <img src="./assets/img/logo.jpg" alt="logo">
+    </div>
+
+    <form name="login" action='' method='post' enctype='multipart/form-data' novalidate autocomplete="on">
+
+     <div class="form-group required" data-id="name">
+        <label class="control-label" for="name">name</label>
+        <img class="svg" src="./assets/img/user.svg" alt="pictogramme">
+        <input type="text" class="form-control" id="userID" name="pseudoEmail" value=""  placeholder="pseudo ou email"
+           data-required="true" minlength="4" />
+        <p class="error">L'email ou le pseudo n'est pas valide</p>
+     </div>
+
+     <div class="form-group required" data-id="password">
+        <label class="control-label" for="password">password</label>
+        <img class="svg" src="./assets/img/lock.svg" alt="pictogramme">
+        <input type="text" class="form-control" id="password" name="password" value=""   placeholder="mot de passe"
+           data-required="true" data-msg-required="Ce champs est requis"
+           data-mask="A" />
+        <p class="error">Le mot de passe doit contenir au moins 8 caractères, un chiffre et un charactère spécial</p>
+     </div>
+
+     <div class='recaptcha'>
+        <script type="text/javascript">
+           function renderReCaptcha(){
+           	theme = 'light',
+           	key = 0000; // Choper une clef
+           	grecaptcha.render( document.getElementById('g-recaptcha'), {
+                  'sitekey' : key,
+                  'theme' : theme
+                });
+           };
+        </script>
+        <script src="https://www.google.com/recaptcha/api.js?hl=&onload=renderReCaptcha&render=explicit" async defer></script>
+
+        <div id='g-recaptcha' class='g-recaptcha' data-theme='light' data-sitekey='0000'></div> <!-- Choper une clef -->
+     </div>
+
+     <p class="error">Manque des champs fdp !</p>
+
+     <div class="submit" data-id="submit">
+        <label for="submit">submit</label>
+        <button type="submit" class="btn">
+        SE CONNECTER
+        </button>
+        <p class="error">Le login ou le mot de passe n'est pas correct</p>
+     </div>
+
+      <div class="sep"></div>
+      <a class="forgotten" href="#">me souviens plus</a>
+
+   </form>
+ </section>

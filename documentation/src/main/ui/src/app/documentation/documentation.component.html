@@ -1,0 +1,29 @@
+
+<p>documentation : allo </p>
+
+
+ <aside>
+    <app-search-engine></app-search-engine>
+  </aside>
+  
+  <p>vous etes connecté depuis  secondes</p>
+
+  <section>
+    <ul *ngFor="let doc of documentation;let i = index">
+      <li>{{doc.id}}</li>
+      <li>{{doc.os}}</li>
+      <li>{{doc.framework}}</li>
+      <li>{{doc.content}}</li>
+    </ul>
+
+    
+  <!--
+    <button [disabled]="!isAuth" (click)="onAllumer()"> Tout allumer</button>
+    <button (click)="onAllumer()"> Tout allumer</button>
+    <button (click)="onAllumer()"> Tout allumer</button>
+  -->
+  </section>
+      
+  
+  
+  

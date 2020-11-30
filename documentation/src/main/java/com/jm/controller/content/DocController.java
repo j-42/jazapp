@@ -2,8 +2,6 @@ package com.jm.controller.content;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
+
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.jm.controller.exeption.NoContentExeption;
@@ -27,6 +24,7 @@ import com.jm.model.DocContent;
 
 
 @RestController
+@RequestMapping("/api/")
 public class DocController {
 	
 	@Autowired
@@ -41,7 +39,7 @@ public class DocController {
     }
     */
   
-	/*
+	/* == Permet de récuperer les données dans un template 
 	@RequestMapping(value="/doc/content", method=RequestMethod.GET)
     public String display_documentation(Model model) {
 
@@ -52,8 +50,17 @@ public class DocController {
     }
 	*/
 	
+	
+	// == Données bruts pour la vue
+	@GetMapping(value = "/doc/content/")
+    public ResponseEntity<?> getDoc() {
+		List<DocContent> doccontent = docContentDao.findAll();
+        return ResponseEntity.ok(doccontent);
+    }
 
-	@RequestMapping(value="/doc/content", method=RequestMethod.GET)
+	
+/*
+	@GetMapping(value = "/doc/content/")
 	public ModelAndView displayArticle(Map<String, Object> model) {
 
 	    List<DocContent> doccontent = docContentDao.findAll();
@@ -61,7 +68,8 @@ public class DocController {
 
 	    return new ModelAndView("display_documentation", model);
 	}
-
+ 	
+ */
 	
     
 	@GetMapping(value = "/doc/content/{id}")

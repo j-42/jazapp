@@ -13,13 +13,8 @@
       <li>{{doc.id}}</li>
       <li>{{doc.permissions}}</li>
       <li>{{doc.os[0]}}</li>
-      <li>
-        <ul *ngFor="let f of doc.framework">
-          <li>{{f}}</li>
-        </ul>
-      </li>
-      <li>{{doc.library}}</li>
-      <li>{{doc.content}}</li>
+      <li>{{doc.framework[0]}}</li>
+      <li>{{doc.content[0]}}</li>
     </ul>
 
     

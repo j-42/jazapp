@@ -15,10 +15,16 @@ export class DocumentationService {
       "permissions":"noob",
       "os":["os"],
       "langage":["langage"],
-      "framework":["framework 1", "framework 2"],
-      "library":["library 1", "library 2"],
+      "framework":["framework"],
+      "library":["library"],
       "content":"content"
     }
+    ,
+    {"id":2,"permissions":"noob5","os":["os5"],"langage":["langage5"],"framework":["framework5"],"library":["library5"],"content":"content5"}
+    ,
+    {"id":3,"permissions":"noob","os":["mac"],"langage":["<ul><li>langage 1<li>"],"framework":["spring"],"library":["<p>{{library}}</p>","<p>{{otherlibrary}}</p>"],"content":"<li>{{content}}</li>"}
+    ,
+    {"id":4,"permissions":"noob","os":["mac"],"langage":["<ul><li>langage 1<li>","<ul><li>langage 2<li>"],"framework":["spring"],"library":["<p>{{library}}</p>"],"content":"<li>{{content}}</li>"}
   ];
 
 

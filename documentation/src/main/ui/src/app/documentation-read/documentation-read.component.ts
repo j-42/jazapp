@@ -3,12 +3,12 @@ import { interval, Observable, Subject, Subscription } from 'rxjs';
 import { DocumentationService } from '../services/documentation.service';
 
 @Component({
-  selector: 'app-documentation',
-  templateUrl: './documentation.component.html',
-  styleUrls: ['./documentation.component.styl']
+  selector: 'app-documentation-read',
+  templateUrl: './documentation-read.component.html',
+  styleUrls: ['./documentation-read.component.styl']
 })
 
-export class DocumentationComponent implements OnInit, OnDestroy {
+export class DocumentationReadComponent implements OnInit, OnDestroy {
 
   constructor( private documentationService : DocumentationService) { }
 

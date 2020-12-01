@@ -5,11 +5,11 @@ import { DocumentationService } from '../services/documentation.service';
 
 @Component({
   selector: 'app-edit-documentation',
-  templateUrl: './edit-documentation.component.html',
-  styleUrls: ['./edit-documentation.component.styl']
+  templateUrl: './documentation-create.component.html',
+  styleUrls: ['./documentation-create.component.styl']
 })
 
-export class EditDocumentationComponent implements OnInit {
+export class DocumentationCreateComponent implements OnInit {
 
   constructor(private documentationService:DocumentationService, private router : Router) { }
 

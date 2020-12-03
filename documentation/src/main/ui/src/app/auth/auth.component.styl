@@ -1,0 +1,99 @@
+:host 
+  display block
+  background green
+  position absolute
+  width 100%
+  height 100%
+  top 0
+  left 0
+  
+ section#login
+    background center / cover url("/assets/img/background.jpg")
+    //background rgba(255,255,255,0.9)
+    padding 30px
+    display flex
+    justify-content center
+    align-items center
+    flex-direction column
+    width 30%
+    min-width 300px
+
+  .logo
+    position relative
+    display flex
+    justify-content center
+    align-items center
+    overflow hidden
+    width 150px
+    height 150px
+    border-radius 100px
+    margin-bottom 30px
+    img
+      position absolute
+      transform translate(-50%, -50%)
+      top 50%
+      left 50%
+      width 100%
+
+  form
+    width 100%
+    >div
+      position relative
+      margin-bottom 20px
+      &.form-group
+        min-height 35px
+      &.submit
+        min-height 35px
+      >img,input
+        position absolute
+        height  35px
+        width 100%
+      label
+        display none
+      img
+        width 35px
+        height 35px
+        z-index 1
+        padding 8px
+      input[type=text]
+        padding 5px 5px 5px 35px
+        border 1px solid $lightgrey
+        border-radius 6px
+      input[type=text]:focus,input[type=text]:active
+        border 1px solid $main
+      .btn
+        background-color $main
+        color white
+        width 100%
+        border none
+        padding 5px 10px
+        border-radius 2px
+        height 40px
+        &:hover
+          background-color $mainhover
+          cursor pointer
+      &.valid
+        input
+          border-color initial
+      &.invalid
+        input
+          border-color red
+    div.sep
+      margin 50px 0 20px
+      height 1px
+      width 100%
+      background $lightgrey
+    .forgotten
+      color $main
+      display flex
+      justify-content center
+      width 100%
+      text-decoration none
+      &:hover
+        text-decoration underline
+    .error
+      display none
+      position relative
+      padding 40px 5px 0
+      color $error
+      font-size 14px

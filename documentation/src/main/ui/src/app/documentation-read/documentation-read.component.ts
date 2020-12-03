@@ -31,6 +31,10 @@ export class DocumentationReadComponent implements OnInit, OnDestroy {
     }
 
 
+  onSaveDoc() {
+    this.documentationService.saveDoc();
+  }
+
 
 /*
   getStatus() {

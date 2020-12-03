@@ -6,17 +6,19 @@ import { Doc } from '../models/doc.model';
 @Injectable()
 export class DocumentationService {
 
+  constructor(private httpClient: HttpClient) { }
+
   documentationSubject = new Subject<any[]>();
 
 
   private documentation : Doc[] = [
     {
-      "id":1,
+      "id":10,
       "permissions":"noob",
       "os":["os"],
-      "langage":["langage"],
-      "framework":["framework 1", "framework 2"],
-      "library":["library 1", "library 2"],
+      "langages":["langage"],
+      "frameworks":["framework 1", "framework 2"],
+      "libraries":["library 1", "library 2"],
       "content":"content"
     }
   ];
@@ -26,7 +28,7 @@ export class DocumentationService {
     this.documentationSubject.next(this.documentation.slice());
   } // La methode next force le Subject à emmettre ce qu'on lui passe en argument
 
-  constructor(private httpClient: HttpClient) { }
+
 
   addDocumentation(doc:Doc) {
     doc.id = this.documentation[(this.documentation.length - 1)].id + 1;
@@ -34,9 +36,9 @@ export class DocumentationService {
     this.emitDocumentationSubject();
   }
 
-/*
-  rootURL = '/api';
 
+  rootURL = '/api/';
+/*
   getDocumentation() {
     return this.httpClient
       .get<any[]>(this.rootURL + '/doc/content/')
@@ -49,18 +51,18 @@ export class DocumentationService {
           console.log('Erreur de chatgmeent de la doc.');
       })
   }
-
-  addDocumentation(documentation: any, id: number) {
-	  documentation.id = id;
-    return this.httpClient
-      .put(this.rootURL + '/doc', documentation)
-      .subscribe( () => {
-        console.log('doc enrtregistré');
-      }, (error) => {
-        console.log('erreur de sauvegarde' + error);
-      })
-  }
 */
 
+  saveDoc() {
+    this.httpClient
+      .post(this.rootURL + 'doc/content/post/', this.documentation[0])
+      .subscribe( 
+        () => {
+          console.log('doc enrtregistré');
+        }, 
+        (error) => {
+          console.log('erreur de sauvegarde' + error);
+      })
+  }
 
 }

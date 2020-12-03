@@ -78,17 +78,17 @@ public class DocController {
 		
 		if (doccontent == null) throw new NoContentExeption("Le produit avec l'id" + id + "n'existe pas");
 		
-		
-		
 		return doccontent;
+		
 	}
 	
 
-	@PostMapping(value= "/doc/content/post")
+	@PostMapping(value= "/doc/content/post/")
 	public ResponseEntity<Void> createDocContent(@Validated @RequestBody DocContent docContent) {
 		
 		//DocContent docCreated = docContentDao.save(docContent);
 		DocContent docCreated = docContentDao.save(docContent);
+		
 		
 		if (docCreated != null) {
 			
@@ -101,7 +101,7 @@ public class DocController {
 			
 		} 
 		else {
-			
+
 			return ResponseEntity.noContent().build();
 			
 		}

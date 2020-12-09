@@ -3,7 +3,7 @@
 <form [formGroup]="docForm" (ngSubmit)="onSubmitDoc()">
     <div>
         <label for="permissions">Permissions</label>
-        <select multiple formControlName="permissions" id="permissions">
+        <select formControlName="permissions" id="permissions">
             <option *ngFor="let p of permissions" [ngValue]="p">{{p["name"]}}</option>
         </select>
     </div>

@@ -93,7 +93,7 @@ public class DocController {
 
 
 		if (docCreated != null) {
-			
+			System.out.print("ok");
 			URI location = ServletUriComponentsBuilder
 					.fromCurrentContextPath()
 					.path("/{id}")
@@ -103,7 +103,7 @@ public class DocController {
 			
 		} 
 		else {
-
+			System.out.print("problemw");
 			return ResponseEntity.noContent().build();
 			
 		}

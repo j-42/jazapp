@@ -6,22 +6,15 @@ import { Doc } from '../models/doc.model';
 @Injectable()
 export class DocumentationService {
 
+  rootURL = '/api/';
+
   constructor(private httpClient: HttpClient) { }
 
   documentationSubject = new Subject<any[]>();
 
 
-  public documentation : Doc[] = [];
-  public doc: Doc = {
-    content: "tydjj",
-    frameworks: [{id: 38, name: "Java"}],
-    id: 1,
-    langages: [{id: 22, name: "Angular"}],
-    libraries: [{id: 23, name: "GSAP"}],
-    os: [{id: 24, name: "Windows"}],
-    permissions: [{id: 15, name: "Noob"}]
-  }
-
+  private documentation : Doc[] = [];
+  private newDoc!: Doc ;
 
   emitDocumentationSubject() {
     this.documentationSubject.next(this.documentation.slice());
@@ -31,17 +24,13 @@ export class DocumentationService {
 
   addDocumentation(doc:Doc) {
     console.log(doc);
-    this.documentation.push(doc);
+    this.newDoc = doc;
     this.emitDocumentationSubject();
-    
   }
-
-
-  rootURL = '/api/';
 
   getDocumentation() {
     return this.httpClient
-      .get<any[]>(this.rootURL + '/doc/content/')
+      .get<Doc[]>(this.rootURL + '/doc/content/')
       .subscribe( 
         (response) => {
           this.documentation = response;
@@ -55,7 +44,7 @@ export class DocumentationService {
 
   saveDoc() {
     this.httpClient
-      .post(this.rootURL + 'doc/content/post/', this.doc)
+      .post(this.rootURL + 'doc/content/post/', this.newDoc)
       .subscribe( 
         () => {
           console.log('doc enrtregistré');

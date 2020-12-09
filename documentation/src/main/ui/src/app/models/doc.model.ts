@@ -9,7 +9,7 @@ export class Doc {
     constructor(
         public id:number,
 
-        public permissions: Permission[] ,
+        public permission: Permission,
         public os: Os[],
         public frameworks: Framework[],
         public langages: Langage[],

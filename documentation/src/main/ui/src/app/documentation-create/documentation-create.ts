@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {Doc} from '../models/doc.model';
 import {DocumentationService} from '../services/documentation.service';
+import { FrameworksService } from '../services/frameworks.service';
 
 @Component({
   selector: 'app-edit-documentation',
@@ -14,16 +15,26 @@ export class DocumentationCreateComponent implements OnInit {
 
   docForm!: FormGroup;
 
-  permissions = [{"id":15,"name":"Noob"},{"id":2,"name":"God"}];
+  permissions = [{id: 15, name: "Noob"},{id: 2, name: "God"}];
   os = [{"id":22,"name":"Linux"},{"id":24,"name":"Windows"}];
   langages = [{"id":36,"name":"CSS"}];
-  frameworks = [{"id":22,"name":"Angular"},{"id":23,"name":"Node.js"}];
+  frameworks = this.frameworksService.frameworks;
   libraries = [{"id":22,"name":"Maps"},{"id":23,"name":"GSAP"}];
 
-  constructor(private formBuilder: FormBuilder, private documentationService: DocumentationService, private router: Router) {}
+
+  constructor(
+      private formBuilder: FormBuilder, 
+      private documentationService: DocumentationService, 
+      private frameworksService: FrameworksService,
+      private router: Router) {}
+
+
 
   ngOnInit(): void {
-      this.initForm();
+
+
+    this.initForm();
+    this.frameworksService.getFrameworks();
   }
 
   initForm() {
@@ -41,7 +52,7 @@ export class DocumentationCreateComponent implements OnInit {
       const formValue = this.docForm.value;
       const newDoc = new Doc(
           5,
-          formValue["permissions"] ? formValue["permissions"] : [],
+          formValue["permission"],
           formValue["os"] ? formValue["os"] : [],
           formValue["langages"] ? formValue["langages"] : [],
           formValue["frameworks"] ? formValue["frameworks"] : [],
@@ -49,9 +60,9 @@ export class DocumentationCreateComponent implements OnInit {
           formValue["content"]
       )
     console.log("newDoc " + newDoc);
-     this.documentationService.addDocumentation(newDoc);
-     this.documentationService.saveDoc();
-
+    this.documentationService.addDocumentation(newDoc);
+    this.documentationService.saveDoc();
+    this.router.navigate(["documentation"]);
   }
 
 
@@ -94,7 +105,7 @@ export class DocumentationCreateComponent implements OnInit {
   }
 
   onAddFramework() {
-      this.frameworks.push({id: this.frameworks.length -1, name:this.newFramework});
+      this.frameworksService.addFramework({id: this.frameworksService.frameworks.length -1, name:this.newFramework});
       this.newFramework = "";
       this.addFramework = false;
   }

@@ -33,7 +33,7 @@ public class DocContent {
 		joinColumns = @JoinColumn(name = "doc_content_id"), // Connect to the owner side of the relationship
 		inverseJoinColumns = @JoinColumn(name = "permission_id")
 	)
-	Set<Permission> permissions = new HashSet<>(); // => https://dzone.com/articles/why-set-is-better-than-list-in-manytomany
+	Set<Permission> permission = new HashSet<>(); // => https://dzone.com/articles/why-set-is-better-than-list-in-manytomany
 	
 	@ManyToMany
 	@JoinTable(
@@ -72,7 +72,7 @@ public class DocContent {
 	
 	public DocContent(
 			int id, 
-			Set<Permission> permissions, 
+			Set<Permission> permission, 
 			Set<Os> os, 
 			Set<Langage> langages, 
 			Set<Framework> frameworks, 
@@ -81,7 +81,7 @@ public class DocContent {
 			) {
 				super();
 				this.id = id;
-				this.permissions = permissions;
+				this.permission = permission;
 				this.os = os;
 				this.langages = langages;
 				this.frameworks = frameworks;
@@ -103,12 +103,12 @@ public class DocContent {
 		this.os = os;
 	}
 	
-	public Set<Permission> getPermissions() {
-		return permissions;
+	public Set<Permission> getPermission() {
+		return permission;
 	}
 
-	public void setPermissions(Set<Permission> permissions) {
-		this.permissions = permissions;
+	public void setPermission(Set<Permission> permission) {
+		this.permission = permission;
 	}
 	
 	public Set<Langage> getLangage() {

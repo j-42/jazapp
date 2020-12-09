@@ -11,17 +11,16 @@ export class DocumentationService {
   documentationSubject = new Subject<any[]>();
 
 
-  private documentation : Doc[] = [
-    {
-      "id":10,
-      "permissions":"noob",
-      "os":["os"],
-      "langages":["langage"],
-      "frameworks":["framework 1", "framework 2"],
-      "libraries":["library 1", "library 2"],
-      "content":"content"
-    }
-  ];
+  public documentation : Doc[] = [];
+  public doc: Doc = {
+    content: "tydjj",
+    frameworks: [{id: 38, name: "Java"}],
+    id: 1,
+    langages: [{id: 22, name: "Angular"}],
+    libraries: [{id: 23, name: "GSAP"}],
+    os: [{id: 24, name: "Windows"}],
+    permissions: [{id: 15, name: "Noob"}]
+  }
 
 
   emitDocumentationSubject() {
@@ -31,14 +30,15 @@ export class DocumentationService {
 
 
   addDocumentation(doc:Doc) {
-    doc.id = this.documentation[(this.documentation.length - 1)].id + 1;
+    console.log(doc);
     this.documentation.push(doc);
     this.emitDocumentationSubject();
+    
   }
 
 
   rootURL = '/api/';
-/*
+
   getDocumentation() {
     return this.httpClient
       .get<any[]>(this.rootURL + '/doc/content/')
@@ -51,11 +51,11 @@ export class DocumentationService {
           console.log('Erreur de chatgmeent de la doc.');
       })
   }
-*/
+
 
   saveDoc() {
     this.httpClient
-      .post(this.rootURL + 'doc/content/post/', this.documentation[0])
+      .post(this.rootURL + 'doc/content/post/', this.doc)
       .subscribe( 
         () => {
           console.log('doc enrtregistré');

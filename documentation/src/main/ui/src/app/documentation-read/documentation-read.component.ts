@@ -22,6 +22,8 @@ export class DocumentationReadComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.documentationService.getDocumentation();
+    
     this.documentationSubscription = this.documentationService.documentationSubject.subscribe(
       (documentation: any[]) => {
         this.documentation = documentation;
@@ -35,6 +37,9 @@ export class DocumentationReadComponent implements OnInit, OnDestroy {
     this.documentationService.saveDoc();
   }
 
+  onFetchDoc() {
+    this.documentationService.getDocumentation();
+  }
 
 /*
   getStatus() {

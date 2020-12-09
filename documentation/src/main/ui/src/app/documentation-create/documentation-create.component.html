@@ -3,15 +3,14 @@
 <form [formGroup]="docForm" (ngSubmit)="onSubmitDoc()">
     <div>
         <label for="permissions">Permissions</label>
-        <select formControlName="permissions" id="permissions">
-            <option value="noob">Noob</option>
-            <option value="god">God</option>
+        <select multiple formControlName="permissions" id="permissions">
+            <option *ngFor="let p of permissions" [ngValue]="p">{{p["name"]}}</option>
         </select>
     </div>
     <div>
         <label for="os">OS</label>
         <select multiple formControlName="os" id="os" >
-            <option *ngFor="let o of os" [ngValue]="o">{{o}}</option>
+            <option *ngFor="let o of os" [ngValue]="o">{{o["name"]}}</option>
         </select>
         <svg (click)="onAddOsInput()" class="icon" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><path d="M256,0C114.833,0,0,114.833,0,256s114.833,256,256,256s256-114.853,256-256S397.167,0,256,0z M256,472.341
 			c-119.275,0-216.341-97.046-216.341-216.341S136.725,39.659,256,39.659S472.341,136.705,472.341,256S375.295,472.341,256,472.341z
@@ -28,25 +27,25 @@
         </div>
     </div>
     <div>
-        <label for="langage">Langage</label>
-        <select multiple formControlName="langage" id="langage">
-            <option *ngFor="let l of langage" [ngValue]="l">{{l}}</option>
+        <label for="langages">Langages</label>
+        <select multiple formControlName="langages" id="langages">
+            <option *ngFor="let l of langages" [ngValue]="l">{{l["name"]}}</option>
         </select>
     </div>
     <div>
-        <label for="framework">framework</label>
-        <select multiple formControlName="framework" id="framework">
-            <option *ngFor="let f of framework" [ngValue]="f">{{f}}</option>
+        <label for="frameworks">Frameworks</label>
+        <select multiple formControlName="frameworks" id="frameworks">
+            <option *ngFor="let f of frameworks" [ngValue]="f">{{f["name"]}}</option>
         </select>
     </div>
     <div>
-        <label for="library">library</label>
-        <select multiple formControlName="library" id="library">
-            <option *ngFor="let l of library" [ngValue]="l">{{l}}</option>
+        <label for="libraries">Libraries</label>
+        <select multiple formControlName="libraries" id="libraries">
+            <option *ngFor="let l of libraries" [ngValue]="l">{{l["name"]}}</option>
         </select>
     </div>
     <div>
-        <label for="content">content</label>
+        <label for="content">Content</label>
         <textarea formControlName="content" id="content" rows="5" cols="33"></textarea>
     </div>
     <button [disabled]="docForm.invalid" type="submit">Sauvegarder</button>

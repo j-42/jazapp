@@ -1,21 +1,9 @@
-import {
-  Component,
-  OnInit
-} from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators
-} from '@angular/forms';
-import {
-  Router
-} from '@angular/router';
-import {
-  Doc
-} from '../models/doc.model';
-import {
-  DocumentationService
-} from '../services/documentation.service';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {Doc} from '../models/doc.model';
+import {DocumentationService} from '../services/documentation.service';
+import { FrameworksService } from '../services/frameworks.service';
 
 @Component({
   selector: 'app-edit-documentation',
@@ -27,28 +15,35 @@ export class DocumentationCreateComponent implements OnInit {
 
   docForm!: FormGroup;
 
+  permissions = [{id: 15, name: "Noob"},{id: 2, name: "God"}];
+  os = [{"id":22,"name":"Linux"},{"id":24,"name":"Windows"}];
+  langages = [{"id":36,"name":"CSS"}];
+  frameworks = this.frameworksService.frameworks;
+  libraries = [{"id":22,"name":"Maps"},{"id":23,"name":"GSAP"}];
 
 
+  constructor(
+      private formBuilder: FormBuilder, 
+      private documentationService: DocumentationService, 
+      private frameworksService: FrameworksService,
+      private router: Router) {}
 
-  permissions = ["noob", "good"];
-  os = ["Windows", "Linux", "Mac"];
-  langage = ["java", "javascript", "css"];
-  framework = ["spring", "angular"];
-  library = ["Google Maps", "Mustache", "Open Street"];
 
-  constructor(private formBuilder: FormBuilder, private documentationService: DocumentationService, private router: Router) {}
 
   ngOnInit(): void {
-      this.initForm();
+
+
+    this.initForm();
+    this.frameworksService.getFrameworks();
   }
 
   initForm() {
       this.docForm = this.formBuilder.group({
           permissions: ['', Validators.required],
           os: [''],
-          langage: [''],
-          framework: [''],
-          library: [''],
+          langages: [''],
+          frameworks: [''],
+          libraries: [''],
           content: ['', Validators.required]
       });
   }
@@ -56,17 +51,22 @@ export class DocumentationCreateComponent implements OnInit {
   onSubmitDoc() {
       const formValue = this.docForm.value;
       const newDoc = new Doc(
-          1,
-          formValue["permissions"],
+          5,
+          formValue["permission"],
           formValue["os"] ? formValue["os"] : [],
-          formValue["langage"] ? formValue["langage"] : [],
-          formValue["framework"] ? formValue["framework"] : [],
-          formValue["library"] ? formValue["library"] : [],
+          formValue["langages"] ? formValue["langages"] : [],
+          formValue["frameworks"] ? formValue["frameworks"] : [],
+          formValue["libraries"] ? formValue["libraries"] : [],
           formValue["content"]
       )
-      this.documentationService.addDocumentation(newDoc);
-      this.router.navigate(['/documentation']);
+    console.log("newDoc " + newDoc);
+    this.documentationService.addDocumentation(newDoc);
+    this.documentationService.saveDoc();
+    this.router.navigate(["documentation"]);
   }
+
+
+
 
   // Add OS
   addOs = false;
@@ -77,7 +77,7 @@ export class DocumentationCreateComponent implements OnInit {
   }
 
   onAddOs() {
-      this.os.push(this.newOs);
+      this.langages.push({id: this.langages.length -1, name:this.newOs});
       this.newOs = "";
       this.addOs = false;
   }
@@ -91,7 +91,7 @@ export class DocumentationCreateComponent implements OnInit {
   }
 
   onAddLangage() {
-      this.os.push(this.newLangage);
+      this.os.push({id: this.os.length -1, name:this.newFramework});
       this.newLangage = "";
       this.addLangage = false;
   }
@@ -105,7 +105,7 @@ export class DocumentationCreateComponent implements OnInit {
   }
 
   onAddFramework() {
-      this.os.push(this.newFramework);
+      this.frameworksService.addFramework({id: this.frameworksService.frameworks.length -1, name:this.newFramework});
       this.newFramework = "";
       this.addFramework = false;
   }
@@ -119,7 +119,7 @@ export class DocumentationCreateComponent implements OnInit {
   }
 
   onAddLibrary() {
-      this.os.push(this.newLibrary);
+      this.libraries.push({id: this.libraries.length -1, name:this.newLibrary});
       this.newLibrary = "";
       this.addLibrary = false;
   }

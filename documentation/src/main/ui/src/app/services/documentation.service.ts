@@ -6,40 +6,31 @@ import { Doc } from '../models/doc.model';
 @Injectable()
 export class DocumentationService {
 
+  rootURL = '/api/';
+
+  constructor(private httpClient: HttpClient) { }
+
   documentationSubject = new Subject<any[]>();
 
 
-  private documentation : Doc[] = [
-    {
-      "id":1,
-      "permissions":"noob",
-      "os":["os"],
-      "langage":["langage"],
-      "framework":["framework 1", "framework 2"],
-      "library":["library 1", "library 2"],
-      "content":"content"
-    }
-  ];
-
+  private documentation : Doc[] = [];
+  private newDoc!: Doc ;
 
   emitDocumentationSubject() {
     this.documentationSubject.next(this.documentation.slice());
   } // La methode next force le Subject à emmettre ce qu'on lui passe en argument
 
-  constructor(private httpClient: HttpClient) { }
+
 
   addDocumentation(doc:Doc) {
-    doc.id = this.documentation[(this.documentation.length - 1)].id + 1;
-    this.documentation.push(doc);
+    console.log(doc);
+    this.newDoc = doc;
     this.emitDocumentationSubject();
   }
 
-/*
-  rootURL = '/api';
-
   getDocumentation() {
     return this.httpClient
-      .get<any[]>(this.rootURL + '/doc/content/')
+      .get<Doc[]>(this.rootURL + '/doc/content/')
       .subscribe( 
         (response) => {
           this.documentation = response;
@@ -50,17 +41,17 @@ export class DocumentationService {
       })
   }
 
-  addDocumentation(documentation: any, id: number) {
-	  documentation.id = id;
-    return this.httpClient
-      .put(this.rootURL + '/doc', documentation)
-      .subscribe( () => {
-        console.log('doc enrtregistré');
-      }, (error) => {
-        console.log('erreur de sauvegarde' + error);
+
+  saveDoc() {
+    this.httpClient
+      .post(this.rootURL + 'doc/content/post/', this.newDoc)
+      .subscribe( 
+        () => {
+          console.log('doc enrtregistré');
+        }, 
+        (error) => {
+          console.log('erreur de sauvegarde' + error);
       })
   }
-*/
-
 
 }

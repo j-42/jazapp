@@ -51,7 +51,7 @@ public class DocController {
 	*/
 	
 	
-	// == Données bruts pour la vue
+	// == Données brutes pour la vue
 	@GetMapping(value = "/doc/content/")
     public ResponseEntity<?> getDoc() {
 		List<DocContent> doccontent = docContentDao.findAll();
@@ -76,22 +76,24 @@ public class DocController {
 	public DocContent displayOneContent(@PathVariable int id) throws NoContentExeption {
 		DocContent doccontent = docContentDao.findById(id);
 		
-		if (doccontent == null) throw new NoContentExeption("Le produit avec l'id" + id + "n'existe pas");
-		
-		
+		if (doccontent == null) throw new NoContentExeption("Le content avec l'id" + id + "n'existe pas");
 		
 		return doccontent;
+		
 	}
 	
 
-	@PostMapping(value= "/doc/content/post")
+	@PostMapping(value= "/doc/content/post/")
 	public ResponseEntity<Void> createDocContent(@Validated @RequestBody DocContent docContent) {
 		
-		//DocContent docCreated = docContentDao.save(docContent);
-		DocContent docCreated = docContentDao.save(docContent);
+		// DocContent docCreated = docContentDao.save(docContent);
 		
+		
+		 DocContent docCreated = docContentDao.save(docContent);
+
+
 		if (docCreated != null) {
-			
+			System.out.print("ok");
 			URI location = ServletUriComponentsBuilder
 					.fromCurrentContextPath()
 					.path("/{id}")
@@ -101,10 +103,11 @@ public class DocController {
 			
 		} 
 		else {
-			
+			System.out.print("problemw");
 			return ResponseEntity.noContent().build();
 			
 		}
 
 	}
+	
 }

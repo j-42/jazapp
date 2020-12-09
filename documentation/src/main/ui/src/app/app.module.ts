@@ -19,6 +19,8 @@ import { DocumentationReadComponent } from './documentation-read/documentation-r
 import { DocumentationCreateComponent } from './documentation-create/documentation-create';
 import { UsersReadComponent } from './users-read/users-read.component';
 import { UsersCreateComponent } from './users-create/users-create.component';
+import { FrameworksService } from './services/frameworks.service';
+import { OsService } from './services/os.service';
 
 
 const appRoutes : Routes = [
@@ -52,6 +54,8 @@ const appRoutes : Routes = [
   ],
   providers: [
     DocumentationService,
+    FrameworksService,
+    OsService,
     UsersService,
     AuthService
   ],

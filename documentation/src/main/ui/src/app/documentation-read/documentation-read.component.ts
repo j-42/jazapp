@@ -1,5 +1,6 @@
 import { Component, ContentChildren, Input, OnDestroy, OnInit } from '@angular/core';
 import { interval, Observable, Subject, Subscription } from 'rxjs';
+import { Doc } from '../models/doc.model';
 import { DocumentationService } from '../services/documentation.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class DocumentationReadComponent implements OnInit, OnDestroy {
   constructor( private documentationService : DocumentationService) { }
 
 
-  documentation!: any[];
+  documentation!: Doc[];
   documentationSubscription!: Subscription;
   
 

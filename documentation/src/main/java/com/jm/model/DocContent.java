@@ -3,6 +3,7 @@ package com.jm.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -68,6 +69,7 @@ public class DocContent {
 	Set<Library> libraries = new HashSet<>();
 
 	@NotNull
+	@Column(name="content")
 	private String content;
 	
 	public DocContent(

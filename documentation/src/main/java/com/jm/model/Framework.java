@@ -3,6 +3,7 @@ package com.jm.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -25,6 +26,7 @@ public class Framework {
 	private int id;
 	
 	@NotNull
+	@Column(name="name")
 	private String name;
 
 	

@@ -40,10 +40,10 @@ export class OsService{
 
     saveOs() {
         this.httpClient
-            .post(this.rootURL + 'doc/content/post/', this.os)
+            .post(this.rootURL + '/doc/os/post/', this.os)
             .subscribe( 
             () => {
-                console.log('os enrtregistrér');
+                console.log('os enrtregistré');
             }, 
             (error) => {
                 console.log('erreur de sauvegarde' + error);

@@ -19,9 +19,11 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.jm.controller.exeption.NoContentExeption;
 import com.jm.dao.DocContentDao;
+import com.jm.dao.ContentDao;
+import com.jm.dao.ContentDao2;
 import com.jm.model.DocContent;
-
-
+import com.jm.model.Content;
+import com.jm.model.Content2;
 
 @RestController
 @RequestMapping("/api/")
@@ -29,7 +31,13 @@ public class DocController {
 	
 	@Autowired
 	private DocContentDao docContentDao;
-	
+
+	@Autowired
+	private ContentDao contentDao;
+
+	@Autowired
+	private ContentDao2 contentDao2;
+
 	/*
     // Get content data
     @RequestMapping(value="/doc/content", method=RequestMethod.GET)
@@ -55,10 +63,31 @@ public class DocController {
 	@GetMapping(value = "/doc/content/")
     public ResponseEntity<?> getDoc() {
 		List<DocContent> doccontent = docContentDao.findAll();
+		System.out.println(doccontent);
+		System.out.println("toto");
         return ResponseEntity.ok(doccontent);
     }
 
-	
+
+
+	// == Données brutes pour la vue
+	@GetMapping(value = "/doc/content1/")
+	public ResponseEntity<?> getDoc1() {
+		List<Content> content = contentDao.findAll();
+		System.out.println(content);
+		return ResponseEntity.ok(content);
+	}
+
+	// == Données brutes pour la vue
+	@GetMapping(value = "/doc/2/")
+	public ResponseEntity<?> getDoc2() {
+		List<Content2> content2 = contentDao2.findAll();
+		System.out.println(content2);
+		return ResponseEntity.ok(content2);
+	}
+
+
+
 /*
 	@GetMapping(value = "/doc/content/")
 	public ModelAndView displayArticle(Map<String, Object> model) {

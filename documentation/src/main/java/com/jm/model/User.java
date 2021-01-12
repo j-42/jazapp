@@ -1,5 +1,6 @@
 package com.jm.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -17,7 +18,10 @@ public class User {
 	private int id;
 	
 	private String email;
+	
+	@Column(name="pseudo")
 	private String pseudo;
+	
 	private String name;
 	private String surname;
 	

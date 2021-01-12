@@ -13,11 +13,13 @@ import com.jm.dao.LangagesDao;
 import com.jm.dao.LibrariesDao;
 import com.jm.dao.OsDao;
 import com.jm.dao.PermissionsDao;
+import com.jm.dao.UsersDao;
 import com.jm.model.Framework;
 import com.jm.model.Langage;
 import com.jm.model.Library;
 import com.jm.model.Os;
 import com.jm.model.Permission;
+import com.jm.model.User;
 
 
 @RestController
@@ -39,6 +41,9 @@ public class getDocRoutes {
 	@Autowired 
 	private LangagesDao langagesDao;	
 	
+	@Autowired 
+	private UsersDao usersDao;	
+	
 	
 	// == Données bruts pour la vue
 	@GetMapping(value = "/doc/frameworks/")
@@ -46,7 +51,7 @@ public class getDocRoutes {
 		List<Framework> frameworks = frameworksDao.findAll();
         return ResponseEntity.ok(frameworks);
     }
-
+	
 	// == Données bruts pour la vue
 	@GetMapping(value = "/doc/os/")
     public ResponseEntity<?> getOs() {
@@ -74,6 +79,15 @@ public class getDocRoutes {
 		List<Langage> langages = langagesDao.findAll();
         return ResponseEntity.ok(langages);
     }
+
+	
+	// == Données bruts pour la vue
+	@GetMapping(value = "/doc/users/")
+    public ResponseEntity<?> getUsers() {
+		List<User> users = usersDao.findAll();
+        return ResponseEntity.ok(users);
+    }
+	
 }
 
 

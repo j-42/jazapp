@@ -4,6 +4,10 @@ import {Router} from '@angular/router';
 import {Doc} from '../models/doc.model';
 import {DocumentationService} from '../services/documentation.service';
 import { FrameworksService } from '../services/frameworks.service';
+import { LangagesService } from '../services/langagesService';
+import { LibrariesService } from '../services/LibrariesService';
+import { OsService } from '../services/os.service';
+import { PermissionsService } from '../services/permissionsService';
 
 @Component({
   selector: 'app-edit-documentation',
@@ -15,26 +19,30 @@ export class DocumentationCreateComponent implements OnInit {
 
   docForm!: FormGroup;
 
-  permissions = [{id: 15, name: "Noob"},{id: 2, name: "God"}];
-  os = [{"id":22,"name":"Linux"},{"id":24,"name":"Windows"}];
-  langages = [{"id":36,"name":"CSS"}];
+  permissions = this.permissionsService.permissions;
+  os = this.osService.os;
+  langages = this.langagesService.langages;
   frameworks = this.frameworksService.frameworks;
-  libraries = [{"id":22,"name":"Maps"},{"id":23,"name":"GSAP"}];
+  libraries = this.librariesService.libraries;
 
 
   constructor(
       private formBuilder: FormBuilder, 
       private documentationService: DocumentationService, 
-      private frameworksService: FrameworksService,
+      private frameworksService: FrameworksService, 
+      private permissionsService: PermissionsService,
+      private osService: OsService,
+      private langagesService: LangagesService,
+      private librariesService: LibrariesService,
       private router: Router) {}
 
 
 
   ngOnInit(): void {
-
+    this.frameworksService.getFrameworks();
 
     this.initForm();
-    this.frameworksService.getFrameworks();
+        
   }
 
   initForm() {

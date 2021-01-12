@@ -21,6 +21,9 @@ import { UsersReadComponent } from './users-read/users-read.component';
 import { UsersCreateComponent } from './users-create/users-create.component';
 import { FrameworksService } from './services/frameworks.service';
 import { OsService } from './services/os.service';
+import { LangagesService } from './services/langagesService';
+import { LibrariesService } from './services/LibrariesService';
+import { PermissionsService } from './services/permissionsService';
 
 
 const appRoutes : Routes = [
@@ -55,7 +58,10 @@ const appRoutes : Routes = [
   providers: [
     DocumentationService,
     FrameworksService,
+    LangagesService,
+    LibrariesService,
     OsService,
+    PermissionsService,
     UsersService,
     AuthService
   ],

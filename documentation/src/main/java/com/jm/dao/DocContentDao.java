@@ -1,9 +1,8 @@
 package com.jm.dao;
 
+import com.jm.model.DocContent;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
-import com.jm.model.DocContent;
 
 @Repository
 public interface DocContentDao extends JpaRepository<DocContent, Integer> { 

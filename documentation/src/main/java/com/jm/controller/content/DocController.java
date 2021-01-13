@@ -1,42 +1,23 @@
 package com.jm.controller.content;
 
-import java.net.URI;
-import java.util.List;
-
-
+import com.jm.controller.exeption.NoContentExeption;
+import com.jm.dao.DocContentDao;
+import com.jm.model.DocContent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import com.jm.controller.exeption.NoContentExeption;
-import com.jm.dao.DocContentDao;
-import com.jm.dao.ContentDao;
-import com.jm.dao.ContentDao2;
-import com.jm.model.DocContent;
-import com.jm.model.Content;
-import com.jm.model.Content2;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/")
 public class DocController {
-	
+
 	@Autowired
 	private DocContentDao docContentDao;
-
-	@Autowired
-	private ContentDao contentDao;
-
-	@Autowired
-	private ContentDao2 contentDao2;
 
 	/*
     // Get content data
@@ -56,9 +37,8 @@ public class DocController {
         
         return "display_documentation";
     }
-	*/
-	
-	
+*/
+/*
 	// == Données brutes pour la vue
 	@GetMapping(value = "/doc/content/")
     public ResponseEntity<?> getDoc() {
@@ -77,15 +57,25 @@ public class DocController {
 		System.out.println(content);
 		return ResponseEntity.ok(content);
 	}
-
+*/
 	// == Données brutes pour la vue
-	@GetMapping(value = "/doc/2/")
-	public ResponseEntity<?> getDoc2() {
-		List<Content2> content2 = contentDao2.findAll();
-		System.out.println(content2);
-		return ResponseEntity.ok(content2);
+	@GetMapping(value = "/doc/content/")
+	public ResponseEntity<List<DocContent>> getDoc() {
+		List<DocContent> docContent = docContentDao.findAll();
+		System.out.println(docContent);
+		return ResponseEntity.ok(docContent);
 	}
 
+
+	@GetMapping(value = "/doc/content/{id}")
+	public DocContent displayOneContent(@PathVariable int id) throws NoContentExeption {
+		DocContent docContent = docContentDao.findById(id);
+
+		if (docContent == null) throw new NoContentExeption("Le content avec l'id" + id + "n'existe pas");
+
+		return docContent;
+
+	}
 
 
 /*
@@ -98,9 +88,9 @@ public class DocController {
 	    return new ModelAndView("display_documentation", model);
 	}
  	
- */
-	
-    
+
+
+
 	@GetMapping(value = "/doc/content/{id}")
 	public DocContent displayOneContent(@PathVariable int id) throws NoContentExeption {
 		DocContent doccontent = docContentDao.findById(id);
@@ -138,5 +128,5 @@ public class DocController {
 		}
 
 	}
-	
+ */
 }

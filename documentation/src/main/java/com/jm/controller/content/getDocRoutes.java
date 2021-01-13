@@ -1,25 +1,14 @@
 package com.jm.controller.content;
 
-import java.util.List;
-
+import com.jm.dao.*;
+import com.jm.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jm.dao.FrameworksDao;
-import com.jm.dao.LangagesDao;
-import com.jm.dao.LibrariesDao;
-import com.jm.dao.OsDao;
-import com.jm.dao.PermissionsDao;
-import com.jm.dao.UsersDao;
-import com.jm.model.Framework;
-import com.jm.model.Langage;
-import com.jm.model.Library;
-import com.jm.model.Os;
-import com.jm.model.Permission;
-import com.jm.model.User;
+import java.util.List;
 
 
 @RestController

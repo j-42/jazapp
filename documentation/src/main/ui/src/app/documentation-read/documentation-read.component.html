@@ -20,19 +20,29 @@
 
       <li>
         <ul *ngFor="let o of doc.os">
-          <li>os : {{o["name"]}}</li>
+          os : 
+          <li>{{o["name"]}}</li>
+        </ul>
+      </li>
+
+      <li>
+        <ul *ngFor="let l of doc.langages">
+          langages : 
+          <li>{{l["name"]}}</li>
         </ul>
       </li>
 
       <li>
         <ul *ngFor="let f of doc.frameworks">
-          <li>frameworks : {{f["name"]}}</li>
+          frameworks : 
+          <li>{{f["name"]}}</li>
         </ul>
       </li>
 
       <li>
         <ul *ngFor="let l of doc.libraries">
-          <li>libraries : {{l["name"]}}</li>
+          libraries :
+          <li> {{l["name"]}}</li>
         </ul>
       </li>
       

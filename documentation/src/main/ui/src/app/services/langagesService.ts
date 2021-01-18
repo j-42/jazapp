@@ -40,7 +40,7 @@ export class LangagesService {
             .post(this.rootURL + '/doc/langages/post/', this.langages)
             .subscribe( 
             () => {
-                console.log('langages enrtregistré');
+                console.log('langages enrtregistrés');
             }, 
             (error) => {
                 console.log('erreur de sauvegarde' + error);
